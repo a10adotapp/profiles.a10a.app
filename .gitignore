@@ -41,7 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # upload directory
-public/upload/
+public/upload/profiles/*
 !public/upload/profiles/.gitkeep
 
 # generated directory

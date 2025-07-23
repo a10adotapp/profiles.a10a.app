@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { listProfileCached } from "./_actions/list-profile";
 
+export const dynamic = "force-dynamic";
+
 export default async function Page() {
   const profiles = await listProfileCached();
 

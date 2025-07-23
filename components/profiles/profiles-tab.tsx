@@ -19,7 +19,7 @@ export function ProfilesTab({
     if (value === "user-profiles") {
       router.push("/liff/profiles/user-profiles");
     }
-  }, []);
+  }, [router]);
 
   return (
     <Tabs value={current} onValueChange={handleValueChange}>
