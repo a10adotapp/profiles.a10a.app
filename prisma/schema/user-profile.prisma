@@ -1,0 +1,17 @@
+model UserProfile {
+  id String @id @default(cuid(2)) @db.VarChar(30)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  userId    String @db.VarChar(30)
+  profileId String @db.VarChar(30)
+
+  isMyProfile Boolean @default(false)
+
+  user    User    @relation(fields: [userId], references: [id])
+  profile Profile @relation(fields: [profileId], references: [id])
+
+  @@map("user_profiles")
+}

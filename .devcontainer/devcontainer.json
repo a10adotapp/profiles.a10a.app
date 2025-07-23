@@ -1,0 +1,15 @@
+{
+  "name": "profiles.a10a.app",
+  "dockerComposeFile": "compose.yaml",
+  "service": "app",
+  "workspaceFolder": "/workspace/app",
+  "postCreateCommand": "git config --global --add safe.directory /workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "Prisma.prisma"
+      ]
+    }
+  }
+}

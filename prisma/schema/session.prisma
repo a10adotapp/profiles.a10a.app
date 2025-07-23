@@ -1,0 +1,17 @@
+model Session {
+  id String @id @default(cuid(2)) @db.VarChar(30)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  userId String @map("user_id") @db.VarChar(30)
+
+  location  String  @map("location")
+  ipAddress String? @map("ip_address")
+  userAgent String? @map("user_agent")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("sessions")
+}

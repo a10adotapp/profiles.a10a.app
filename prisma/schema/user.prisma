@@ -1,0 +1,20 @@
+model User {
+  id String @id @default(cuid(2)) @db.VarChar(30)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  lineUserId String @map("line_user_id")
+
+  authName     String? @map("auth_name")
+  authPassword String? @map("auth_password")
+
+  displayName String? @map("display_name")
+
+  postedProfiles Profile[]
+  sessions       Session[]
+  userProfiles   UserProfile[]
+
+  @@map("users")
+}

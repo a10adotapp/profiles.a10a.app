@@ -1,0 +1,26 @@
+services:
+  app:
+    image: github.com/a10adotapp/profiles.a10a.app:local
+    build:
+      context: ..
+      dockerfile: ./.devcontainer/Dockerfile
+    container_name: profiles-a10a-app-app
+    command: sleep infinity
+    env_file: .env
+    environment:
+      DATABASE_URL: "mysql://root:root@db:3306/profiles_a10a_app_local"
+      PUBLIC_DIRNAME: "/workspace/app/public"
+    volumes:
+      - ..:/workspace/app
+    ports:
+      - 4001:3000
+
+  db:
+    image: mysql:8
+    container_name: profiles-a10a-app-db
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_TCP_PORT: 3306
+      MYSQL_DATABASE: "profiles_a10a_app_local"
+    ports:
+      - 3306:3306

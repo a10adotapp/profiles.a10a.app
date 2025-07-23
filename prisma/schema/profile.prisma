@@ -1,0 +1,31 @@
+model Profile {
+  id String @id @default(cuid(2)) @db.VarChar(30)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  postedBy String @map("posted_by") @db.VarChar(30)
+
+  frontImageUri String @map("front_image_uri")
+  backImageUri  String @map("back_image_uri")
+
+  name         String? @map("name")
+  phoneticName String? @map("phonetic_name")
+  department   String? @map("department")
+  jobTitle     String? @map("job_title")
+  phoneNumber  String? @map("phone_number")
+  email        String? @map("email")
+
+  companyName    String? @map("company_name")
+  companyAddress String? @map("company_address")
+
+  analyzeStartedAt DateTime? @map("analyze_started_at")
+  analyzeEndedAt   DateTime? @map("analyze_ended_at")
+
+  postUser User @relation(fields: [postedBy], references: [id])
+
+  userProfiles UserProfile[]
+
+  @@map("profiles")
+}

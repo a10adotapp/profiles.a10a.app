@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+rm -rf /workspace/app/prisma/schema/migrations/* \
+ && npx prisma migrate reset --force \
+ && npx prisma migrate dev --name init
