@@ -29,6 +29,14 @@ const credentialsSchema = z.object({
 });
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  jwt: {
+    maxAge: 60 * 60 * 24 * 1,
+  },
+  session: {
+    strategy: "jwt",
+    maxAge: 60 * 60 * 24 * 1,
+    updateAge: 60 * 60 * 1,
+  },
   providers: [
     Credentials({
       credentials: {
@@ -162,25 +170,4 @@ async function getOrCreateUser(data: {
       lineUserId: data.lineUserId,
     },
   });
-}
-
-export async function getUserByAuthName(authName: string): Promise<PrismaUser | null> {
-  try {
-    return await prisma.user.findFirst({
-      where: {
-        deletedAt: null,
-        authName,
-      },
-    });
-  } catch (err) {
-    serverError({
-      action: "getUserByAuthName",
-      data: {
-        error: err,
-        authName,
-      },
-    });
-
-    return null;
-  }
 }

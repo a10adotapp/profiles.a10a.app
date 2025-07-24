@@ -80,8 +80,14 @@ export function LiffContextProvider({
       liff: liffInstance,
       error,
     }}>
+      {!session && (
+        <div>ログイン中...</div>
+      )}
+
       {error && (
-        error.message
+        <div>
+          {error.message}
+        </div>
       )}
 
       {(liffInstance && !error) && children}
