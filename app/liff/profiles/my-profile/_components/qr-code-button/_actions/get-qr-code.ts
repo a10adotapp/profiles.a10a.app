@@ -11,7 +11,6 @@ export async function getQrCodeUrl(data: {
     return [
       lineMiniappUrl(),
       `/liff/profiles/${data.profileId}/share`,
-      `/profiles/${data.profileId}/share`,
     ].join("");
   } catch (err) {
     serverError({
