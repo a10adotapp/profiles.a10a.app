@@ -12,6 +12,7 @@ model User {
 
   displayName String? @map("display_name")
 
+  inquiries      Inquiry[]
   postedProfiles Profile[]
   sessions       Session[]
   userProfiles   UserProfile[]

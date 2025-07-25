@@ -11,7 +11,7 @@ import { NameRow } from "./_components/name-row";
 import { PhoneNumberRow } from "./_components/phone-number-row";
 import { PhoneticNameRow } from "./_components/phonetic-name-row";
 
-export function AnalyzeResultTable({
+export function ProfileAnalyzeResultTable({
   profile,
 }: {
   profile: Profile;

@@ -7,25 +7,25 @@ import { useCallback } from "react";
 export function ProfilesTab({
   current,
 }: {
-  current: "recent" | "user-profiles";
+  current: "user-profiles" | "my-profile";
 }) {
   const router = useRouter();
 
   const handleValueChange = useCallback((value: string) => {
-    if (value === "recent") {
-      router.push("/liff/profiles/recent");
-    }
-
     if (value === "user-profiles") {
       router.push("/liff/profiles/user-profiles");
+    }
+
+    if (value === "my-profile") {
+      router.push("/liff/profiles/my-profile");
     }
   }, [router]);
 
   return (
     <Tabs value={current} onValueChange={handleValueChange}>
       <TabsList>
-        <TabsTrigger value="recent">新着</TabsTrigger>
         <TabsTrigger value="user-profiles">名刺入れ</TabsTrigger>
+        <TabsTrigger value="my-profile">自分の名刺</TabsTrigger>
       </TabsList>
     </Tabs>
   );

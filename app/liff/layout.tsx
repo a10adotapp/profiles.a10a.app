@@ -1,6 +1,6 @@
 import { LiffContextProvider } from "@/contexts/liff-context";
 import { auth } from "@/lib/auth";
-import { lineLiffId } from "@/lib/env/line-liff-id";
+import { lineMiniappLiffId } from "@/lib/env/line-miniapp-liff-id";
 import { Metadata, Viewport } from "next";
 import { ReactNode } from "react";
 
@@ -25,7 +25,7 @@ export default async function Layout({
 
   return (
     <LiffContextProvider
-      liffId={lineLiffId()}
+      liffId={lineMiniappLiffId()}
       session={session}>
       {children}
     </LiffContextProvider>

@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 
+import { ProfileAnalyzeResultTable } from "@/components/profile-analyze-result-table";
 import { PageProps } from "@/lib/page-props";
 import { ChevronLeft } from "lucide-react";
 import Image from "next/image";
@@ -7,7 +8,6 @@ import Link from "next/link";
 import z from "zod";
 import { getProfileCached } from "./_actions/get-profile";
 import { getUserProfileCached } from "./_actions/get-user-profile";
-import { AnalyzeResultTable } from "./_components/analyze-result-table";
 import { MenuButton } from "./_components/menu-button";
 import { MyProfileToggleButton } from "./_components/my-profile-toggle-button";
 import { UserProfileToggleButton } from "./_components/user-profile-toggle-button";
@@ -74,7 +74,7 @@ export default async function Page(props: PageProps) {
 
       {profile.analyzeEndedAt && (
         <div className="w-full max-w-md border rounded-lg shadow-lg overflow-hidden">
-          <AnalyzeResultTable profile={profile} />
+          <ProfileAnalyzeResultTable profile={profile} />
         </div>
       )}
     </div>

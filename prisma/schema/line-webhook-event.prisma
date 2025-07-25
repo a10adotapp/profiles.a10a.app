@@ -1,0 +1,11 @@
+model LineWebhookEvent {
+  id String @id @default(cuid(2)) @db.VarChar(30)
+
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
+  deletedAt DateTime? @map("deleted_at")
+
+  event Json @map("event")
+
+  @@map("line_webhook_events")
+}

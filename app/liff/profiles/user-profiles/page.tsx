@@ -12,6 +12,12 @@ export default async function Page() {
     <div className="flex flex-col gap-4 p-4">
       <ProfilesTab current="user-profiles" />
 
+      {(profiles.length === 0) && (
+        <div>
+          名刺入れに名刺がありません
+        </div>
+      )}
+
       <div className="grid grid-cols-2 gap-4">
         {profiles.map((profile) => (
           <Link
