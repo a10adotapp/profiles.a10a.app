@@ -109,17 +109,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         throw new Error("no user found");
       }
 
-      const {
-        get: getHeader,
-      } = await headers();
-
-      await prisma.session.create({
-        data: {
-          userId: user.id,
-          location: getHeader("x-pathname") || "",
-          ipAddress: getHeader("x-forwarded-for"),
-          userAgent: getHeader("user-agent"),
-        },
+      createSession({
+        userId: user.id,
       });
 
       return {
@@ -168,6 +159,45 @@ async function getOrCreateUser(data: {
   return await prisma.user.create({
     data: {
       lineUserId: data.lineUserId,
+    },
+  });
+}
+
+async function createSession(data: {
+  userId: string;
+}) {
+  const {
+    get: getHeader,
+  } = await headers();
+
+  const ipAddress = getHeader("x-forwarded-for");
+
+  const userAgent = getHeader("user-agent");
+
+  const session = await prisma.session.findFirst({
+    where: {
+      deletedAt: null,
+      userId: data.userId,
+      ipAddress,
+      userAgent,
+    },
+    orderBy: [
+      {
+        createdAt: "desc",
+      },
+    ],
+  });
+
+  if (session) {
+    return;
+  }
+
+  prisma.session.create({
+    data: {
+      userId: data.userId,
+      location: getHeader("x-pathname") || "",
+      ipAddress,
+      userAgent,
     },
   });
 }

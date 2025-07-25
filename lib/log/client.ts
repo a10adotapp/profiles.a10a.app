@@ -18,3 +18,24 @@ export async function clientInfo({
     }),
   });
 }
+
+export async function clientError({
+  action,
+  data,
+}: {
+  action: string;
+  data: Record<string, unknown>;
+}) {
+  console.error({
+    action,
+    data,
+  });
+
+  fetch("/api/log/error", {
+    method: "POST",
+    body: JSON.stringify({
+      action,
+      data,
+    }),
+  });
+}
