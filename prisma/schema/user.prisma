@@ -7,14 +7,27 @@ model User {
 
   lineUserId String @map("line_user_id")
 
-  authName     String? @map("auth_name")
-  authPassword String? @map("auth_password")
+  // 会社情報
+  companyName              String? @map("company_name")
+  companyAddressPrefecture String? @map("company_address_prefecture")
+  companyAddressRest       String? @map("company_address_rest")
+  industrialDivision       String? @map("industrial_division")
+  industrialMajorGroup     String? @map("industrial_major_group")
+  industrialGroup          String? @map("industrial_group")
 
-  displayName String? @map("display_name")
+  // 所属情報
+  department String? @map("department")
+  jobTitle   String? @map("job_title")
 
-  postedProfiles Profile[]
-  sessions       Session[]
-  userProfiles   UserProfile[]
+  // 個人情報
+  name         String? @map("name")
+  phoneticName String? @map("phonetic_name")
+  phoneNumber  String? @map("phone_number")
+  email        String? @map("email")
+
+  sessions         Session[]
+  userProfiles     UserProfile[]
+  userProfileNotes UserProfileNote[]
 
   @@map("users")
 }

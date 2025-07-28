@@ -69,6 +69,8 @@ export function LiffContextProvider({
         }
 
         router.refresh();
+
+        router.push("/liff/profiles");
       })
       .catch((error) => {
         setError(error);

@@ -3,16 +3,12 @@
 import { auth } from "@/lib/auth";
 import { serverError } from "@/lib/log/server";
 import prisma from "@/prisma";
-import { UserProfile, UserProfileNote } from "@/prisma/generated/client";
+import { UserProfile } from "@/prisma/generated/client";
 import { cache } from "react";
 
 export async function getUserProfile(data: {
   profileId: string;
-}): Promise<
-  (UserProfile & {
-    notes: UserProfileNote[];
-  }) | null
-> {
+}): Promise<UserProfile | null> {
   try {
     const session = await auth();
 
@@ -21,18 +17,6 @@ export async function getUserProfile(data: {
     }
 
     return await prisma.userProfile.findFirst({
-      include: {
-        notes: {
-          where: {
-            deletedAt: null,
-          },
-          orderBy: [
-            {
-              createdAt: "desc",
-            },
-          ],
-        },
-      },
       where: {
         deletedAt: null,
         userId: session.user.id,

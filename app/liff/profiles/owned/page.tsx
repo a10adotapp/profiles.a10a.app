@@ -11,11 +11,11 @@ export default async function Page() {
 
   return (
     <div className="relative flex flex-col gap-4 p-4">
-      <LiffTopTab current="profiles" />
+      <LiffTopTab current="profiles-owned" />
 
       {(userProfiles.length === 0) && (
         <div>
-          名刺入れに名刺がありません
+          自分の名刺がありません
         </div>
       )}
 
@@ -23,7 +23,7 @@ export default async function Page() {
         {userProfiles.map((userProfile) => (
           <Link
             key={userProfile.id}
-            href={`/liff/profiles/${userProfile.profile.id}`}>
+            href={`/liff/profiles/owned/${userProfile.profile.id}`}>
             <div className="w-full aspect-square rounded-lg shadow-lg bg-gray-400 overflow-hidden">
               <Image
                 src={userProfile.profile.frontImageUri}
@@ -44,8 +44,8 @@ export default async function Page() {
         <Button
           asChild
           className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full shadow-lg text-white font-bold">
-          <Link href="/liff/profiles/new">
-            新しい名刺を追加する
+          <Link href="/liff/profiles/owned/new">
+            自分の名刺を追加する
           </Link>
         </Button>
       </div>

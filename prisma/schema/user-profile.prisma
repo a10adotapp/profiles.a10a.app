@@ -5,13 +5,16 @@ model UserProfile {
   updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
 
-  userId    String @db.VarChar(30)
-  profileId String @db.VarChar(30)
+  userId    String @map("user_id") @db.VarChar(30)
+  profileId String @map("profile_id") @db.VarChar(30)
 
-  isMyProfile Boolean @default(false)
+  isOwned  Boolean @default(false)
+  isShared Boolean @default(false)
 
   user    User    @relation(fields: [userId], references: [id])
   profile Profile @relation(fields: [profileId], references: [id])
+
+  notes UserProfileNote[]
 
   @@map("user_profiles")
 }

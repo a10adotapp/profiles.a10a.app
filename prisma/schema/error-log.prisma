@@ -1,15 +1,15 @@
-model Profile {
+model ErrorLog {
   id String @id @default(cuid(2)) @db.VarChar(30)
 
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime  @default(now()) @updatedAt @map("updated_at")
   deletedAt DateTime? @map("deleted_at")
 
-  frontImageUri String @map("front_image_uri")
-  backImageUri  String @map("back_image_uri")
+  userId String? @map("user_id") @db.VarChar(30)
 
-  userProfiles     UserProfile[]
-  userProfileNotes UserProfileNote[]
+  action String @map("action")
 
-  @@map("profiles")
+  data Json @map("data")
+
+  @@map("error_logs")
 }

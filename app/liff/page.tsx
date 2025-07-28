@@ -1,5 +1,14 @@
-import { redirect } from "next/navigation";
+"use client";
 
-export default async function Page() {
-  return redirect("/liff/profiles");
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+export default function Page() {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/liff/profiles");
+  }, [router]);
+
+  return null;
 }

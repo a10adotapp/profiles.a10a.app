@@ -23,19 +23,11 @@ export async function createProfile(data: {
       },
     });
 
-    const userProfile = await prisma.userProfile.create({
+    await prisma.userProfile.create({
       data: {
         userId: session.user.id,
         profileId: profile.id,
-      },
-    });
-
-    await prisma.userProfileNote.create({
-      data: {
-        userId: session.user.id,
-        profileId: profile.id,
-        userProfileId: userProfile.id,
-        body: "名刺入れに名刺を追加しました",
+        isOwned: true,
       },
     });
 
