@@ -30,6 +30,7 @@ export async function createUserProfile(data: {
       data: {
         userId: session.user.id,
         profileId: data.profileId,
+        isShared: true,
       },
     });
   } catch (err) {
